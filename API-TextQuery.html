@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>API-TextQuery</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1>Version：0.0.0</h1>
+<h1>Date：2019/04/19</h1>
+<h1>基本检索</h1>
+<ol>
+<li>关键词词检索</li>
+<li>单篇引文匹配器</li>
+<li>单条文献详情</li>
+</ol>
+<h2>关键词检索</h2>
+<blockquote>
+<p>FMRS最主要的检索功能<br />
+URL：http://127.0.0.1:8000/api/searcher/results/<br />
+请求方法：POST  
+</p>
+</blockquote>
+<h3>传入的Json请求体</h3>
+<pre><code>{
+    &quot;query&quot;:&quot;lung[ti] AND liver[ad]&quot;,
+    &quot;aggs&quot;:&quot;cluster&quot; //cluster:聚类关联；statistics：统计分析，默认为None
+    // 可选参数
+    &quot;size&quot;：10，//默认每页10条
+    &quot;start&quot;:0, //默认0
+}
+</code></pre>
+
+<h3>返回的Json</h3>
+<pre><code>{
+    &quot;status&quot;:&quot;success&quot;, // success or fail
+    &quot;total&quot;:100， //总数
+    &quot;results&quot;:[
+        {
+            'journal': 'Chest surgery clinics of North America',
+            'au': 'de Perrot M;Keshavjee S',
+            'sjr': None,
+            'if': None,
+            'doi': '',
+            'volume': '13',
+            'page': '443-62',
+            'title': 'Lung transplantation. Lung preservation.',
+            'pmid': 13678307,
+            'issue': '3',
+            'fau': 'de Perrot Marc;Keshavjee Shaf'
+        }, {
+            'journal': 'Nordisk medicin',
+            'au': 'ALWALL N;LUNDERQUIST A;OLSSON O',
+            'sjr': None,
+            'if': None,
+            'doi': '',
+            'volume': '49',
+            'page': '211-4',
+            'title': '[Uremic lung, wet lung].',
+            'pmid': 13055003,
+            'issue': '6',
+            'fau': 'ALWALL N;LUNDERQUIST A;OLSSON O'
+        }, {
+            'journal': 'Schweizerische Rundschau für Medizin Praxis = Revue suisse de médecine Praxis',
+            'au': 'Héritier F;Rochat T',
+            'sjr': None,
+            'if': None,
+            'doi': '',
+            'volume': '82',
+            'page': '581-2',
+            'title': '[Heart-lung transplantation, single lung and both lungs].',
+            'pmid': 8506439,
+            'issue': '19',
+            'fau': 'Héritier F;Rochat T'
+        }
+    ],
+    &quot;aggs&quot;:[
+            'mdi': [{
+                'key': 'd008175',
+                'doc_count': 55194
+            }, {
+                'key': 'd002289',
+                'doc_count': 15301
+            }, {
+                'key': 'd008171',
+                'doc_count': 13878
+            }, {
+                'key': 'd000230',
+                'doc_count': 8339
+            }, {
+                'key': 'd018288',
+                'doc_count': 7708
+            }, {
+                'key': 'd002294',
+                'doc_count': 6672
+            }, {
+                'key': 'd014397',
+                'doc_count': 3857
+            }, {
+                'key': 'd011658',
+                'doc_count': 3300
+            }, {
+                'key': 'd011183',
+                'doc_count': 3090
+            }, {
+                'key': 'd012128',
+                'doc_count': 3042
+            }],
+            'mzy': []
+    ]
+}
+</code></pre>
+
+<h2>单篇引文匹配器</h2>
+<blockquote>
+<p>单篇引文匹配，使用关键词检索接口，不适用单独接口；<br />
+但需要对该功能需要的参数进行说明</p>
+</blockquote>
+<h3>可选参数</h3>
+<pre><code>{
+    // 以下均为可选参数， 但至少要有一个参数
+    // 强调：检索式中不支持出现逻辑运算符
+    &quot;jt&quot;:&quot;lung&quot;,
+    &quot;pubyear&quot;:2017,
+    &quot;volume&quot;:1,
+    &quot;issue&quot;:2,
+    &quot;page&quot;：3,
+    &quot;au&quot;:&quot;li&quot;, //如果勾选第一作者，字段名改为【bau】; 末位，则改为【eau】
+    &quot;ti&quot;:&quot;lung cancer&quot;
+}
+</code></pre>
+
+<h3>以上可选参数需要组合成标准检索式，传入关键词检索接口进行处理</h3>
+<blockquote>
+<p>第一作者和末尾作者暂不支持，后续会添加</p>
+</blockquote>
+<pre><code>{
+    &quot;query&quot;:&quot;lung[journal] AND li[au]&quot;
+}
+</code></pre>
+
+<h2>单条文献详情</h2>
+<blockquote>
+<p>查询Mysql，返回单条文献详细信息
+URL:</p>
+</blockquote>
+<h3>传入Json</h3>
+<pre><code>{
+    &quot;pmid&quot;:20411166
+}
+</code></pre>
+
+<h3>返回的Json</h3>
+<pre><code>{
+    &quot;status&quot;:&quot;success&quot;, //success OR fail
+    &quot;pmid&quot;:20411166,
+    &quot;details&quot;:{
+        &quot;ddi&quot;: &quot;&quot;,
+        &quot;mzy&quot;: &quot;&quot;,
+        &quot;filters&quot;: &quot;TE;EN&quot;,
+        &quot;country&quot;: &quot;Greece&quot;,
+        &quot;emi&quot;: &quot;&quot;,
+        &quot;chemical&quot;: &quot;Radiopharmaceuticals;Fluorodeoxyglucose F18&quot;,
+        &quot;volume&quot;: &quot;13&quot;,
+        &quot;mdg&quot;: &quot;D049268&quot;,
+        &quot;ptype&quot;: &quot;Journal Article&quot;,
+        &quot;keywords&quot;: &quot;&quot;,
+        &quot;dpr&quot;: &quot;&quot;,
+        &quot;pmid&quot;: 20411166,
+        &quot;mdi&quot;: &quot;D008175&quot;,
+        &quot;pubyear&quot;: 2010,
+        &quot;dre&quot;: &quot;&quot;,
+        &quot;title&quot;: &quot;Increased 18F-FDG uptake within the reticuloendothelial system in patients with active lung cancer on PET imaging may indicate activation of the systemic immune response.&quot;,
+        &quot;major&quot;: &quot;D019788;D008175;D012157;D049268&quot;,
+        &quot;issn&quot;: &quot;1790-5427&quot;,
+        &quot;if&quot;: 1.008,
+        &quot;issue&quot;: &quot;1&quot;,
+        &quot;fau&quot;: &quot;Bural Gonca G;Torigian Drew A;Chen Wengen;Houseni Mohamed;Basu Sandip;Alavi Abass&quot;,
+        &quot;edr&quot;: &quot;&quot;,
+        &quot;id&quot;: 22669476,
+        &quot;edi&quot;: &quot;&quot;,
+        &quot;pubdate&quot;: &quot;2010-01-01&quot;,
+        &quot;dhs&quot;: &quot;D000368;D005260;D006801;D007113;D008175;D008297;D008875;D012157;D049268&quot;,
+        &quot;subject&quot;: null,
+        &quot;dps&quot;: &quot;&quot;,
+        &quot;pmcid&quot;: &quot;&quot;,
+        &quot;ddt&quot;: &quot;&quot;,
+        &quot;mds&quot;: &quot;&quot;,
+        &quot;sjr&quot;: &quot;0.331&quot;,
+        &quot;abb&quot;: &quot;Hell J Nucl Med&quot;,
+        &quot;abstract&quot;: &quot;The reticuloendothelial system (RES) cells are in the defense against certain pathogens,ing.&quot;,
+        &quot;mdo&quot;: &quot;D000368;D005260;D006801;D007113;D008297;D008875;D012157&quot;,
+        &quot;au&quot;: &quot;Bural GG;Torigian DA;Chen W;Houseni M;Basu S;Alavi A&quot;,
+        &quot;score&quot;: 4015,
+        &quot;jid&quot;: &quot;101257471&quot;,
+        &quot;number&quot;: &quot;M01.060.116.100;X999999;D09.254.229.500;Y05.060D09.254.229.500;Y05.060WWD09.254.229.500;Y9.871;D27.720.470.410.650;Y05.060D27.720.470.410.650;Y08.030D27.720.470.410.650;&quot;,
+        &quot;ean&quot;: &quot;D012157&quot;,
+        &quot;msy&quot;: &quot;&quot;,
+        &quot;journal&quot;: &quot;Hellenic journal of nuclear medicine&quot;,
+        &quot;mids&quot;: &quot;D000368;D005260;D019788;Q000276;D006801;D007113;Q000276;D008175;Q000000981;Q000276;D008297;D008875;D012157;Q000000981;Q000276;D049268;Q000379;D019275;Q000276&quot;,
+        &quot;question&quot;: null,
+        &quot;mesh&quot;: &quot;Aged;老年人@@Female;女(雌)性@@Fluorodeoxyglucose F18/immunology*;氟脱氧葡萄糖F18/免疫学*@@Humans;人类@@Immunity, Innate/immunology;免疫, 先天/免疫学@@Lung Neoplasms/diagnostic imaging*;肺肿瘤/影像诊断*@@Lung Neoplasms/immunology*;肺肿瘤/免疫学*@@Male;男(雄)性@@Middle Aged;中年人@@Mononuclear Phagocyte System/diagnostic imaging*;单核巨噬细胞系统/影像诊断*@@Mononuclear Phagocyte System/immunology*;单核巨噬细胞系统/免疫学*@@Positron-Emission Tomography/methods*;正电子发射断层摄影术/方法*@@Radiopharmaceuticals/immunology;放射性药物/免疫学@@&quot;,
+        &quot;mdr&quot;: &quot;D019788;D019275&quot;,
+        &quot;ad&quot;: &quot;Division of Nuclear Medicine, Department of Radiology, University of Pennsylvania, School of Medicine, USA.&quot;,
+        &quot;dph&quot;: &quot;&quot;,
+        &quot;language&quot;: &quot;eng&quot;,
+        &quot;hindex&quot;: &quot;12&quot;,
+        &quot;page&quot;: &quot;23-5&quot;,
+        &quot;epr&quot;: &quot;&quot;,
+        &quot;doi&quot;: &quot;&quot;,
+        &quot;mdy&quot;: &quot;&quot;,
+        &quot;eph&quot;: &quot;D007113&quot;,
+        &quot;dra&quot;: &quot;&quot;,
+        &quot;conclusion&quot;: &quot;&quot;,
+        &quot;dsu&quot;: &quot;&quot;,
+        &quot;combination&quot;: &quot;D019788D008175;D019788D012157;D019788D049268;D008175D012157;D008175D049268;D012157D049268&quot;
+    }
+}
+</code></pre>
+
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
