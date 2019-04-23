@@ -300,6 +300,7 @@ img {
 #2019/04/23
 1. 修复allfield 字段名错误
 2. 修复排序嵌套错误
+3. 增加过滤器统计参数
 </code></pre>
 
 <h1>基本检索</h1>
@@ -318,8 +319,8 @@ URL：http://127.0.0.1:8000/api/searcher/results/<br />
 </blockquote>
 <h3>传入的Json请求体</h3>
 <pre><code>{
-    &quot;query&quot;:&quot;lung[ti] AND liver[ad]&quot;,
-    &quot;aggs&quot;:&quot;cluster&quot; //cluster:聚类关联；statistics：统计分析，默认为None
+    &quot;query&quot;:&quot;lung[ti] AND liver[ad] AND 1800 TO 2019[pdat] AND 0.001 TO 50.236[if]&quot;, 
+    &quot;aggs&quot;:&quot;cluster&quot; //cluster:聚类关联；statistics：统计分析，filters: 过滤器，默认为None
     // 可选参数
     //分页
     &quot;size&quot;：10，//默认每页10条
