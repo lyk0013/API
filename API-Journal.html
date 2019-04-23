@@ -291,8 +291,15 @@ img {
 </style>
 </head>
 <body>
-<h1>Version：0.0.1</h1>
-<h1>Date：2019/04/16</h1>
+<h1>Version：0.0.2</h1>
+<h1>Date：2019/04/22</h1>
+<pre><code>#2019/04/22
+1. 修改首字母排序，需要传入小写参数
+2. 修改期刊主题词导航检索字段，修改为c_keywords
+3. 修复c_keywords中文分词
+4. 期刊详细信息中添加影响因子字段
+</code></pre>
+
 <h1>期刊接口</h1>
 <ol>
 <li>获取期刊详情</li>
@@ -414,11 +421,11 @@ URL：http://127.0.0.1:8000/api/journal/results/
     &quot;sort_field&quot;:if,  //可选参数， 排序字段
     &quot;sorted&quot;:asc //asc或desc
     //以下五个参数为可选参数
-    &quot;alpha_order&quot;:&quot;0 A&quot;,
+    &quot;alpha_order&quot;:&quot;0 a&quot;, //首字母需小写
     &quot;language&quot;:&quot;eng&quot;,
     &quot;filters&quot;:&quot;SC&quot;,
     &quot;classification&quot;:&quot;R5*&quot;,
-    &quot;e_keywords&quot;:&quot;妇科学&quot;
+    &quot;c_keywords&quot;:&quot;妇科学&quot;
 }
 </code></pre>
 
