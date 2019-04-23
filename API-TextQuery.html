@@ -293,11 +293,18 @@ img {
 <body>
 <h1>Version：0.0.0</h1>
 <h1>Date：2019/04/19</h1>
+<pre><code>#2019/04/22
+1. 增加排序功能
+2. 增加高亮功能
+3. 增加题录输出功能
+</code></pre>
+
 <h1>基本检索</h1>
 <ol>
-<li>关键词词检索</li>
+<li>关键词检索</li>
 <li>单篇引文匹配器</li>
 <li>单条文献详情</li>
+<li>题录输出</li>
 </ol>
 <h2>关键词检索</h2>
 <blockquote>
@@ -311,8 +318,14 @@ URL：http://127.0.0.1:8000/api/searcher/results/<br />
     &quot;query&quot;:&quot;lung[ti] AND liver[ad]&quot;,
     &quot;aggs&quot;:&quot;cluster&quot; //cluster:聚类关联；statistics：统计分析，默认为None
     // 可选参数
+    //分页
     &quot;size&quot;：10，//默认每页10条
     &quot;start&quot;:0, //默认0
+    //排序
+    &quot;sort_field&quot;:if, //pubyear OR if
+    &quot;sort_order&quot;:asc, //asc OR desc 
+    //高亮
+    &quot;highlight&quot;:true //true OR false, 目前默认且只支持题名字段高亮
 }
 </code></pre>
 
@@ -333,19 +346,7 @@ URL：http://127.0.0.1:8000/api/searcher/results/<br />
             'pmid': 13678307,
             'issue': '3',
             'fau': 'de Perrot Marc;Keshavjee Shaf'
-        }, {
-            'journal': 'Nordisk medicin',
-            'au': 'ALWALL N;LUNDERQUIST A;OLSSON O',
-            'sjr': None,
-            'if': None,
-            'doi': '',
-            'volume': '49',
-            'page': '211-4',
-            'title': '[Uremic lung, wet lung].',
-            'pmid': 13055003,
-            'issue': '6',
-            'fau': 'ALWALL N;LUNDERQUIST A;OLSSON O'
-        }, {
+        },  {
             'journal': 'Schweizerische Rundschau für Medizin Praxis = Revue suisse de médecine Praxis',
             'au': 'Héritier F;Rochat T',
             'sjr': None,
@@ -366,33 +367,14 @@ URL：http://127.0.0.1:8000/api/searcher/results/<br />
             }, {
                 'key': 'd002289',
                 'doc_count': 15301
-            }, {
-                'key': 'd008171',
-                'doc_count': 13878
-            }, {
-                'key': 'd000230',
-                'doc_count': 8339
-            }, {
-                'key': 'd018288',
-                'doc_count': 7708
-            }, {
-                'key': 'd002294',
-                'doc_count': 6672
-            }, {
-                'key': 'd014397',
-                'doc_count': 3857
-            }, {
-                'key': 'd011658',
-                'doc_count': 3300
-            }, {
-                'key': 'd011183',
-                'doc_count': 3090
-            }, {
-                'key': 'd012128',
-                'doc_count': 3042
             }],
             'mzy': []
-    ]
+    ],
+    &quot;highlight&quot; : {
+      &quot;title&quot; : [
+        &quot;Increased 18F-FDG uptake within the reticuloendothelial system in patients with active &lt;a&gt;lung&lt;b&gt; cancer on&quot;
+      ]
+    }
 }
 </code></pre>
 
@@ -427,7 +409,8 @@ URL：http://127.0.0.1:8000/api/searcher/results/<br />
 <h2>单条文献详情</h2>
 <blockquote>
 <p>查询Mysql，返回单条文献详细信息
-URL:</p>
+URL:http://127.0.0.1:8000/api/searcher/details/  
+</p>
 </blockquote>
 <h3>传入Json</h3>
 <pre><code>{
@@ -500,6 +483,43 @@ URL:</p>
         &quot;dsu&quot;: &quot;&quot;,
         &quot;combination&quot;: &quot;D019788D008175;D019788D012157;D019788D049268;D008175D012157;D008175D049268;D012157D049268&quot;
     }
+}
+</code></pre>
+
+<h2>题录输出</h2>
+<blockquote>
+<p>FMRS 题录输出，默认输出1000条
+URL:http://127.0.0.1:8000/api/searcher/exports/  
+</p>
+</blockquote>
+<h3>传入的Json</h3>
+<pre><code>{
+    &quot;pmids&quot;:&quot;1,2,3,4&quot;  //PMID， 最后不要有逗号
+}
+</code></pre>
+
+<h3>返回的json</h3>
+<pre><code>{   
+    //此为样式，正式返回的字段为全字段
+    &quot;results&quot;: [
+        {
+            &quot;title&quot;: &quot;Formate assay in body fluids: application in methanol poisoning.&quot;,
+            &quot;pmid&quot;: 1
+        },
+        {
+            &quot;title&quot;: &quot;Delineation of thequeous solution.&quot;,
+            &quot;pmid&quot;: 2
+        },
+        {
+            &quot;title&quot;: &quot;Metal substitutions incarbonic anhydrase: a halide ion probe study.&quot;,
+            &quot;pmid&quot;: 3
+        },
+        {
+            &quot;title&quot;: &quot;Effect of chloroquinke.&quot;,
+            &quot;pmid&quot;: 4
+        }
+    ],
+    &quot;status&quot;: &quot;success&quot;
 }
 </code></pre>
 
