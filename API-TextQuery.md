@@ -114,11 +114,13 @@
 >URL:http://127.0.0.1:8000/api/searcher/details/  
 
 ###传入Json
+
 	{
 		"pmid":20411166
 	}
 
 ###返回的Json
+
 	{
 		"status":"success", //success OR fail
 		"pmid":20411166,
