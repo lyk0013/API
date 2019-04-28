@@ -6,6 +6,9 @@
 	2. 修改期刊主题词导航检索字段，修改为c_keywords
 	3. 修复c_keywords中文分词
 	4. 期刊详细信息中添加影响因子字段
+	#2019/04/28
+	1. 修复分区处理参数细节错误
+	2. 修复五个可选过滤参数，默认赋值问题
 
 # 期刊接口
 1. 获取期刊详情
@@ -26,13 +29,15 @@
 > 传入的Json参数  
 
     {
-		"UID":"0370647"
+		"uid":"0370647"
 	}
 
 > 返回的Json参数  
 
     {
 		"status":"success", //成功Success，失败Fail
+		"total":1,
+		"uid":"0370647",
 		"details":{
 			"ename" : "CA: a cancer journal for clinicians",
 			"country" : "United States",
@@ -40,7 +45,7 @@
 			.........
 		},
 		"included":["SCIE", "Medline"],
-		"vol&iss":null //暂时未做，后续添加
+		"dvi":null //暂时未做，后续添加
 		"rank":{
 			"wos":[
 				{
@@ -96,7 +101,7 @@
 > 返回的Json参数  
 
 	{
-	    "status": "correct"， //correct: 正常的补全，rectify：未找到该词，纠正后补全, wrong:空字符
+	    "status": "correct", //correct: 正常的补全，rectify：未找到该词，纠正后补全, wrong:空字符
 	    "suggestions":['lung', "lung cancer"] //返回的为列表形式的建议词
 	}
 
@@ -110,7 +115,7 @@
 		"szie":10, //可选参数， 每页大小
 		"start":0,  //可选参数， 起始值
 		"sort_field":if,  //可选参数， 排序字段
-		"sorted":asc //asc或desc
+		"sort_rank":asc //asc或desc
 		//以下五个参数为可选参数
 		"alpha_order":"0 a", //首字母需小写
 		"language":"eng",
@@ -124,6 +129,7 @@
 	{
 		"status": "success", //成功Success，失败Fail
 		"total":100,
+		"text":"lun",
 		"results":[
 			{
 	          "abb" : "Bull Inst Natl Sante Rech Med",

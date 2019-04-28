@@ -9,6 +9,9 @@
 	1. 修复allfield 字段名错误
 	2. 修复排序嵌套错误
 	3. 增加过滤器统计参数
+	#2019/04/28
+	1. 修复高亮功能以及数据返回格式
+	2. 修复题录输出，参数数据格式错误问题
 
 
 # 基本检索
@@ -34,7 +37,7 @@
 		"sort_field":if, //pubyear OR if
 		"sort_order":asc, //asc OR desc 
 		//高亮
-		"highlight":true //true OR false, 目前默认且只支持题名字段高亮
+		"highlight":'true' //true OR false, 目前默认且只支持题名字段高亮
 	}
 
 ### 返回的Json
@@ -42,19 +45,25 @@
 	{
 		"status":"success", // success or fail
 		"total":100， //总数
-		"results":[
+		"results":
+		[
 			{
-				'journal': 'Chest surgery clinics of North America',
-				'au': 'de Perrot M;Keshavjee S',
-				'sjr': None,
-				'if': None,
-				'doi': '',
-				'volume': '13',
-				'page': '443-62',
-				'title': 'Lung transplantation. Lung preservation.',
-				'pmid': 13678307,
-				'issue': '3',
-				'fau': 'de Perrot Marc;Keshavjee Shaf'
+			"highlight": {
+				"title": ["Changes in the bronchial epithelium in relation to smoking and cancer of the <em>lung</em>."]
+			},
+			"source": {
+				"issue": "2",
+				"title": "Changes in the bronchial epithelium in relation to smoking and cancer of the lung.",
+				"doi": "",
+				"if": 244.585,
+				"journal": "CA: a cancer journal for clinicians",
+				"page": "53-6",
+				"au": "AUERBACH O;GERE JB;FORMAN JB;PETRICK TG;SMOLIN HJ;MUEHSAM GE;KASSOUNY DY;STOUT AP",
+				"pmid": 13523390,
+				"fau": "AUERBACH O;GERE J B;FORMAN J B;PETRICK T G;SMOLIN H J;MUEHSAM G E;KASSOUNY D Y;STOUT A P",
+				"sjr": "37.384",
+				"volume": "8"
+				}
 			},  {
 				'journal': 'Schweizerische Rundschau für Medizin Praxis = Revue suisse de médecine Praxis',
 				'au': 'Héritier F;Rochat T',
@@ -69,7 +78,7 @@
 				'fau': 'Héritier F;Rochat T'
 			}
 		],
-		"aggs":[
+		"aggs":{
 				'mdi': [{
 					'key': 'd008175',
 					'doc_count': 55194
@@ -78,12 +87,7 @@
 					'doc_count': 15301
 				}],
 				'mzy': []
-		],
-        "highlight" : {
-          "title" : [
-            "Increased 18F-FDG uptake within the reticuloendothelial system in patients with active <a>lung<b> cancer on"
-          ]
-        }
+		}
 	}
 
 ## 单篇引文匹配器
@@ -102,7 +106,7 @@
 		"au":"li", //如果勾选第一作者，字段名改为【bau】; 末位，则改为【eau】
 		"ti":"lung cancer"
 	}
-### 以上可选参数需要组合成标准检索式，传入关键词检索接口进行处理
+### 以上可选参数需要  【 组合成标准检索式 】 ，传入关键词检索接口进行处理
 >第一作者和末尾作者暂不支持，后续会添加
 
 	{
@@ -219,5 +223,6 @@
 	            "pmid": 4
 	        }
 	    ],
+		"total":4	
 	    "status": "success"
 	}
