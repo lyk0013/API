@@ -12,13 +12,14 @@
 	#2019/04/28
 	1. 修复高亮功能以及数据返回格式
 	2. 修复题录输出，参数数据格式错误问题
+	#2019/04/30
+	1. 合并题录输出和单条文献详情为一个接口----文献详情接口
 
 
 # 基本检索
 1. 关键词检索
 2. 单篇引文匹配器
-3. 单条文献详情
-4. 题录输出
+3. 文献详情/题录输出
 
 ## 关键词检索
 >FMRS最主要的检索功能  
@@ -113,22 +114,43 @@
 		"query":"lung[journal] AND li[au]"
 	}
 
-## 单条文献详情
->查询Mysql，返回单条文献详细信息
+## 文献详情/题录输出
+>查询Mysql，返回文献详细信息
 >URL:http://127.0.0.1:8000/api/searcher/details/  
 
 ### 传入Json
 
 	{
-		"pmid":20411166
+		"pmid":"1,2,3,4"  //PMID， 最后不要有逗号
 	}
 
 ### 返回的Json
-
-	{
-		"status":"success", //success OR fail
-		"pmid":20411166,
-		"details":{
+	{	
+		//此为样式，正式返回的字段为全字段
+	    "results": [
+	        {
+	            "title": "Formate assay in body fluids: application in methanol poisoning.",
+	            "pmid": 1
+	        },
+	        {
+	            "title": "Delineation of thequeous solution.",
+	            "pmid": 2
+	        },
+	        {
+	            "title": "Metal substitutions incarbonic anhydrase: a halide ion probe study.",
+	            "pmid": 3
+	        },
+	        {
+	            "title": "Effect of chloroquinke.",
+	            "pmid": 4
+	        }
+	    ],
+		"total":4	
+		"pmid":"1,2,3,4"
+	    "status": "success"
+	}
+	全字段样式如下：
+		{
 			"ddi": "",
 			"mzy": "",
 			"filters": "TE;EN",
@@ -189,40 +211,3 @@
 			"dsu": "",
 			"combination": "D019788D00818175D049268;D012157D049268"
 		}
-	}
-
-## 题录输出
->FMRS 题录输出，默认输出1000条
->URL:http://127.0.0.1:8000/api/searcher/exports/  
-
-### 传入的Json
-
-	{
-		"pmids":"1,2,3,4"  //PMID， 最后不要有逗号
-	}
-
-### 返回的json 
-
-	{	
-		//此为样式，正式返回的字段为全字段
-	    "results": [
-	        {
-	            "title": "Formate assay in body fluids: application in methanol poisoning.",
-	            "pmid": 1
-	        },
-	        {
-	            "title": "Delineation of thequeous solution.",
-	            "pmid": 2
-	        },
-	        {
-	            "title": "Metal substitutions incarbonic anhydrase: a halide ion probe study.",
-	            "pmid": 3
-	        },
-	        {
-	            "title": "Effect of chloroquinke.",
-	            "pmid": 4
-	        }
-	    ],
-		"total":4	
-	    "status": "success"
-	}
