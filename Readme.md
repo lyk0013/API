@@ -12,7 +12,8 @@ Hello API！
 		{
 			"uid":"1111",
 			"user_info":{
-				"phone":"13233543654"
+				"phone":"13233543654"，
+				"ip":"1.1.1.12"
 			}
 		}
 		示例二，新增用户：
@@ -24,7 +25,7 @@ Hello API！
 				"email":"邮箱"，
 				"organization":"医院名称",
 				"department":"科室名称",
-				"ip":"IP"
+				"ip":"1.1.1.12"
 			}
 		}
 	}
