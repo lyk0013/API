@@ -25,7 +25,8 @@
 >FMRS最主要的检索功能  
 >URL：http://127.0.0.1:8000/api/searcher/results/  
 >请求方法：POST  
-### 传入的Json请求体  
+>
+>### 传入的Json请求体  
 
 	{
 		"query":"lung[ti] AND liver[ad] AND 1800 TO 2019[pdat] AND 0.001 TO 50.236[if]", 
@@ -35,8 +36,8 @@
 		"size"：10，//默认每页10条
 		"start":0, //默认0
 		//排序
-		"sort_field":if, //pubyear OR if
-		"sort_order":asc, //asc OR desc 
+		"sort_field":'if', //pubyear OR if
+		"sort_order":'asc', //asc OR desc 
 		//高亮
 		"highlight":'true' //true OR false, 目前默认且只支持题名字段高亮
 	}
@@ -50,23 +51,23 @@
 		[
 			{
 			"highlight": {
-				"title": ["Changes in the bronchial epithelium in relation to smoking and cancer of the <em>lung</em>."]
+				"title": ["Changes in the bronchial and cancer of the <em>lung</em>."]
 			},
 			"source": {
 				"issue": "2",
-				"title": "Changes in the bronchial epithelium in relation to smoking and cancer of the lung.",
+				"title": "Changes in the bronchial and cancer of the lung.",
 				"doi": "",
 				"if": 244.585,
 				"journal": "CA: a cancer journal for clinicians",
 				"page": "53-6",
-				"au": "AUERBACH O;GERE JB;FORMAN JB;PETRICK TG;SMOLIN HJ;MUEHSAM GE;KASSOUNY DY;STOUT AP",
+				"au": "AUERBACH O;GERE JB;FORMAN JB;KASSOUNY DY;STOUT AP",
 				"pmid": 13523390,
-				"fau": "AUERBACH O;GERE J B;FORMAN J B;PETRICK T G;SMOLIN H J;MUEHSAM G E;KASSOUNY D Y;STOUT A P",
+				"fau": "SMOLIN H J;MUEHSAM G E;KASSOUNY D Y;STOUT A P",
 				"sjr": "37.384",
 				"volume": "8"
 				}
 			},  {
-				'journal': 'Schweizerische Rundschau für Medizin Praxis = Revue suisse de médecine Praxis',
+				'journal': 'Schweizerische Rundschau für Medizin Praxis',
 				'au': 'Héritier F;Rochat T',
 				'sjr': None,
 				'if': None,

@@ -29,64 +29,64 @@
 > 传入的Json参数  
 
     {
-		"uid":"0370647"
-	}
+    	"uid":"0370647"
+    }
 
 > 返回的Json参数  
 
     {
-		"status":"success", //成功Success，失败Fail
-		"total":1,
-		"uid":"0370647",
-		"details":{
-			"ename" : "CA: a cancer journal for clinicians",
-			"country" : "United States",
-			"cname" : "癌",
-			.........
-		},
-		"included":["SCIE", "Medline"],
-		"dvi":null //暂时未做，后续添加
-		"rank":{
-			"wos":[
-				{
-					"subject":"CHEMISTRY, PHYSICAL",
-					"ranking":1,
-					"total":147,
-					"quartile":1
-				},
-				{
-					"subject":"PHYSICS, APPLIED",
-					"ranking":1,
-					"total":146,
-					"quartile":1
-				}
-			],
-			"cas":{
-				"major":[
-					{
-						"subject":"工程技术",
-						"section":1
-					},
-					{
-						"subject":"工程技术",
-						"section":1
-					}
-				],
-				"sub":[
-					{
-						"subject":"CHEMISTRY, PHYSICAL",
-						"cname":"物理化学",
-						"section":1
-					},
-					{
-						"subject":"PHYSICS, CONDENSED MATTER",
-						"cname":"物理：凝聚态物理",
-						"section":1
-					}
-				]
-			}
-		}
-	}
+    	"status":"success", //成功Success，失败Fail
+    	"total":1,
+    	"uid":"0370647",
+    	"details":{
+    		"ename" : "CA: a cancer journal for clinicians",
+    		"country" : "United States",
+    		"cname" : "癌",
+    		.........
+    	},
+    	"included":["SCIE", "Medline"],
+    	"dvi":null //暂时未做，后续添加
+    	"rank":{
+    		"wos":[
+    			{
+    				"subject":"CHEMISTRY, PHYSICAL",
+    				"ranking":1,
+    				"total":147,
+    				"quartile":1
+    			},
+    			{
+    				"subject":"PHYSICS, APPLIED",
+    				"ranking":1,
+    				"total":146,
+    				"quartile":1
+    			}
+    		],
+    		"cas":{
+    			"major":[
+    				{
+    					"subject":"工程技术",
+    					"section":1
+    				},
+    				{
+    					"subject":"工程技术",
+    					"section":1
+    				}
+    			],
+    			"sub":[
+    				{
+    					"subject":"CHEMISTRY, PHYSICAL",
+    					"cname":"物理化学",
+    					"section":1
+    				},
+    				{
+    					"subject":"PHYSICS, CONDENSED MATTER",
+    					"cname":"物理：凝聚态物理",
+    					"section":1
+    				}
+    			]
+    		}
+    	}
+    }
 
 ## 自动提示
 >根据用户输入字母，自动提示用户可能想输入的词，也称自动补全   
@@ -97,7 +97,7 @@
 	    "query":"lun"，
 	    "size": 10 //可选参数， 默认返回前十条
 	}
-    
+
 > 返回的Json参数  
 
 	{
@@ -112,7 +112,7 @@
 
 	{
 	    "query":"lun"，//必要参数，传入空可返回全部
-		"szie":10, //可选参数， 每页大小
+		"size":10, //可选参数， 每页大小
 		"start":0,  //可选参数， 起始值
 		"sort_field":if,  //可选参数， 排序字段
 		"sort_rank":asc //asc或desc
@@ -168,7 +168,7 @@
 		          "doc_count" : 6468
 		        }
 		]
-
+	
 	}
 
 
