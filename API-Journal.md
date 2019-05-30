@@ -29,13 +29,18 @@
 > 传入的Json参数  
 
     {
-    	"uid":"0370647"
+    	"uid":"0370647",
+    	"user_info":{
+    		"phone":"13233543654"，
+    		"key":"ee38f3401083dadc1c8ebbcba9bee77b"，
+    		"ip":"1.1.1.12"
+    	}
     }
 
 > 返回的Json参数  
 
     {
-    	"status":"success", //成功Success，失败Fail
+    	"status":"1100", //成功1100
     	"total":1,
     	"uid":"0370647",
     	"details":{
@@ -95,13 +100,18 @@
 
 	{
 	    "query":"lun"，
-	    "size": 10 //可选参数， 默认返回前十条
+	    "size": 10, //可选参数， 默认返回前十条
+	    "user_info":{
+			"phone":"13233543654"，
+			"key":"ee38f3401083dadc1c8ebbcba9bee77b"，
+			"ip":"1.1.1.12"
+		}
 	}
 
 > 返回的Json参数  
 
 	{
-	    "status": "correct", //correct: 正常的补全，rectify：未找到该词，纠正后补全, wrong:空字符
+	    "status":"1100", //成功1100
 	    "suggestions":['lung', "lung cancer"] //返回的为列表形式的建议词
 	}
 
@@ -121,13 +131,18 @@
 		"language":"eng",
 		"filters":"SC",
 		"classification":"R5*",
-		"c_keywords":"妇科学"
+		"c_keywords":"妇科学",
+		"user_info":{
+			"phone":"13233543654"，
+			"key":"ee38f3401083dadc1c8ebbcba9bee77b"，
+			"ip":"1.1.1.12"
+		}
 	}
 
 > 返回的Json参数  
 
 	{
-		"status": "success", //成功Success，失败Fail
+		"status":"1100", //成功1100
 		"total":100,
 		"text":"lun",
 		"results":[

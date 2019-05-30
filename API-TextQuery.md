@@ -39,13 +39,18 @@
 		"sort_field":'if', //pubyear OR if
 		"sort_order":'asc', //asc OR desc 
 		//高亮
-		"highlight":'true' //true OR false, 目前默认且只支持题名字段高亮
+		"highlight":'true'， //true OR false, 目前默认且只支持题名字段高亮
+		"user_info":{
+			"phone":"13233543654"，
+			"key":"ee38f3401083dadc1c8ebbcba9bee77b"，
+			"ip":"1.1.1.12"
+		}
 	}
 
 ### 返回的Json
 
 	{
-		"status":"success", // success or fail
+		"status":"1100", //成功1100
 		"total":100， //总数
 		"results":
 		[
@@ -122,7 +127,12 @@
 ### 传入Json
 
 	{
-		"pmid":"1,2,3,4"  //PMID， 最后不要有逗号
+		"pmid":"1,2,3,4"，  //PMID， 最后不要有逗号
+		"user_info":{
+			"phone":"13233543654"，
+			"key":"ee38f3401083dadc1c8ebbcba9bee77b"，
+			"ip":"1.1.1.12"
+		}
 	}
 
 ### 返回的Json
@@ -148,7 +158,7 @@
 	    ],
 		"total":4	
 		"pmid":"1,2,3,4"
-	    "status": "success"
+	    "status": 1100
 	}
 	全字段样式如下：
 		{
