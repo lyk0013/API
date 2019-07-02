@@ -31,8 +31,9 @@
 >### 传入的Json请求体  
 
 	{
-		"query":"lung[ti] AND liver[ad] AND 1800 TO 2019[pdat] AND 0.001 TO 50.236[if]",
-	    //统计名称|统计数量 ：cluster|10
+		"query":"lung[ti] AND liver[ad] AND 1800 TO 2019[pdat] AND 0.001 TO 50.236[if]", 
+		//统计名称|统计数量 ：cluster|10
+		//如果不需统计，请忽略该参数，或赋值为None
 		"aggs":"cluster|10" //cluster:聚类关联；statistics：统计分析，filters: 过滤器，默认为None
 		// 可选参数
 		//分页
