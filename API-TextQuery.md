@@ -30,14 +30,18 @@
 >
 >### 传入的Json请求体  
 
+	关于统计-aggs:
+	1. aggs：如果不需统计，请忽略该参数，或赋值为None
+	2. 如果只统计，不需要检索结果:size=0, start=0
+	3. aggs参数格式："mdg|10;mdi|10....."
+	4. aggs可选字段限定在如下字段中：
+		'mdg', "mdi", "mdr", "mdy", "mzy", "dsu"，'fau', "jid", "major", "country", "province", "pubyear"'filters'
+		
 	{
 		"query":"lung[ti] AND liver[ad] AND 1800 TO 2019[pdat] AND 0.001 TO 50.236[if]", 
-		//统计名称|统计数量 ：cluster|10
-		//如果不需统计，请忽略该参数，或赋值为None
-		"aggs":"cluster|10" //cluster:聚类关联；statistics：统计分析，filters: 过滤器，默认为None
+		//统计字段|统计数量
+		"aggs": "mdg|10;mdi|10"
 		// 可选参数
-		//分页
-		//如果只统计，不需要检索结果:size=0, start=0
 		"size"：10，//默认每页10条
 		"start":0, //默认0
 		//排序
